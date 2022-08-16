@@ -77,25 +77,14 @@ function Todo() {
             value={inputdata}
             onChange={(e) => setInputdata(e.target.value)}
           />
-          {toggle ? (
-            <button
-              type="add"
-              title="Add Item"
-              cursor="pointer"
-              onClick={addItem}
-            >
-              Add
-            </button>
-          ) : (
-            <button
-              type="add"
-              title="Update Item"
-              cursor="pointer"
-              onClick={addItem}
-            >
-              Edit
-            </button>
-          )}
+          <button
+            type="add"
+            title="Add Item"
+            cursor="pointer"
+            onClick={addItem}
+          >
+            {toggle ? "Add" : "Edit"}
+          </button>
         </div>
 
         {items.map((elem) => {

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { MdDelete } from "react-icons/md";
 import { FiEdit } from "react-icons/fi";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import "./Todo.css";
 
@@ -26,7 +28,7 @@ function Todo() {
   };
   const addItem = () => {
     if (!inputdata) {
-      alert("Add Item");
+      toast.dark("Please Add Item");
     } else if (inputdata && !toggle) {
       setItems(
         items.map((elem) => {
@@ -58,6 +60,7 @@ function Todo() {
     setIsEditItem(id);
   };
   const removeAll = () => {
+    toast.dark("Clear All Item")
     setItems([]);
   };
 
@@ -66,63 +69,84 @@ function Todo() {
   }, [items]);
   return (
     <>
-      <div>
-        <figure>
-          <figcaption>Grocery Bud</figcaption>
-        </figure>
-        <div className="inputdata">
-          <input
-            type="text"
-            placeholder="Add Items..!"
-            value={inputdata}
-            onChange={(e) => setInputdata(e.target.value)}
-          />
-          <button
-            type="add"
-            title="Add Item"
-            cursor="pointer"
-            onClick={addItem}
-          >
-            {toggle ? "Add" : "Edit"}
-          </button>
-        </div>
+    <ToastContainer/>
+      <div className="vh-100 gridBox">
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-10">
+              <div class="card">
+                <div class="card-body p-5">
+                  <figure className="wood-text">
+                    <figcaption className="d-flex justify-content-center">
+                      Grocery Bud
+                    </figcaption>
+                  </figure>
+                  <div className="d-flex justify-content-center mb-4">
+                  <div className="inputdata">
+                    <input
+                      type="text"
+                      placeholder="Add Items..!"
+                      value={inputdata}
+                      onChange={(e) => setInputdata(e.target.value)}
+                    />
+                    </div>
+                    <div>
+                    <button
+                      type="add"
+                      title="Add Item"
+                      cursor="pointer"
+                      onClick={addItem}
+                    >
+                      {toggle ? "Add" : "Edit"}
+                    </button>
+                    </div>
+                  </div>
 
-        {items.map((elem) => {
-          return (
-            <>
-              <div className="items" key={elem.id}>
-                <h3 className="item">{elem.name} </h3>
-                <div>
-                  <FiEdit
-                    title={"Edit Item"}
-                    cursor={"pointer"}
-                    style={{ paddingRight: "10px" }}
-                    onClick={() => {
-                      editItem(elem.id);
-                    }}
-                  />
+                  {items.map((elem) => {
+                    return (
+                      <>
+                        <div className="inputda d-flex justify-content-center mb-4">
+                          <div className="items" key={elem.id}>
+                            <h3 className="item">{elem.name} </h3>
+                            <div>
+                              <FiEdit
+                                className="crudButton"
+                                title={"Edit Item"}
+                                cursor={"pointer"}
+                                style={{ paddingRight: "10px" }}
+                                onClick={() => {
+                                  editItem(elem.id);
+                                }}
+                              />
 
-                  <MdDelete
-                    title={"Delete Item"}
-                    cursor={"pointer"}
-                    onClick={() => {
-                      deletItem(elem.id);
-                    }}
-                  />
+                              <MdDelete
+                                className="crudButton"
+                                title={"Delete Item"}
+                                cursor={"pointer"}
+                                onClick={() => {
+                                  deletItem(elem.id);
+                                }}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                    );
+                  })}
+
+                  <div>
+                    <figure className="d-flex justify-content-center mb-4">
+                      <figcaption>
+                        <button className="button">
+                          <span  onClick={removeAll}>Clear Items</span>
+                        </button>
+                      </figcaption>
+                    </figure>
+                  </div>
                 </div>
               </div>
-            </>
-          );
-        })}
-
-        <div>
-          <figure>
-            <figcaption>
-              <button>
-                <span onClick={removeAll}>Clear Items</span>
-              </button>
-            </figcaption>
-          </figure>
+            </div>
+          </div>
         </div>
       </div>
     </>

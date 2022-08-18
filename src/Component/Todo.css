@@ -1,11 +1,97 @@
-.items{
+.items {
+  display: flex;
+  align-items: center;
+}
+.inputdata {
+  display: flex;
+  align-items: center;
+}
+.item {
+  padding-right: 120px;
+}
+.wood-text {
+    background: url('https://i.imgur.com/OUyfQnt.jpg');
+    background-size: cover;
+    position: relative;
+    font-size : 50px;
+    text-transform: uppercase;
+    font-family: 'Rancho', cursive;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+    .wood-text:after {
+      position: absolute;
+      -webkit-text-stroke-color: rgba(black, 0.6);
+      left: 2px;
+      top: 2px
+    
+  }
+.gridBox {
+  background: radial-gradient(50% 123.47% at 50% 50%, #00ff94 0%, #720059 100%),
+    linear-gradient(121.28deg, #669600 0%, #ff0000 100%),
+    linear-gradient(360deg, #0029ff 0%, #8fff00 100%),
+    radial-gradient(100% 164.72% at 100% 100%, #6100ff 0%, #00ff57 100%),
+    radial-gradient(100% 148.07% at 0% 0%, #fff500 0%, #51d500 100%);
+  background-blend-mode: screen, color-dodge, overlay, difference, normal;
+}
+.button {
+    font-size: 25px;
+    width: 8em;
+    height: 2em;
+    color: orange;
+    border-left: 0.08em solid;
+    position: relative;
+    margin-top: 0.8em;
+    cursor: pointer;
+}
+
+.button::before,
+.button::after
+ {
+    content: '';
+    position: absolute;
+    width: inherit;
+    border-left: inherit;
+    z-index: -1;
+}
+
+.button::before {
+    height: 80%;
+    top: 10%;
+    left: calc(-0.15em - 0.08em * 2);
+    filter: brightness(0.8);
+}
+
+.button::after {
+    height: 60%;
+    top: 20%;
+    left: calc(-0.15em * 2 - 0.08em * 3);
+    filter: brightness(0.6);
+}
+
+.button span {
+    position: relative;
+    height: 120%;
+    top: -10%;
+    box-sizing: border-box;
+    border: 0.08em solid;
+    background-color: #333;
     display: flex;
     align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+    text-transform: capitalize;
+    transform: translateX(calc(-0.15em * 3 - 0.08em * 2));
+    transition: 0.3s;
 }
-.inputdata{
-    display: flex;
-    align-items: center;
+
+.button:hover span {
+    transform: translateX(0.15em);
 }
-.item{
-    padding-right: 120px;
+
+.bcrudButton:active {
+  box-shadow: none;
+  transform: translateY(0);
 }
+
